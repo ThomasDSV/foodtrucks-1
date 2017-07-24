@@ -26,7 +26,17 @@ define("MODE", "dev"); // dev | prod
 
 // Répertoires "views"
 define("VIEWS_DIRECTORY", "../private/views/");
+define("FUNCTIONS_DIRECTORY", "../private/functions/");
+define("MODELS_DIRECTORY", "../private/models/");
 
+// -- Regular Expressions
+// Filter for controllers/autoload instruction
+define("FUNCTIONS_FILES", "/^fnc-.*\.php$/i");
+
+// Filter for models/autoload instruction
+define("MODELS_FILES", "/^mdl-.*\.php$/i");
+
+// Page par défaut (paramètre "page" non défini/rempli dans l'URL)
 define("DEFAULT_PAGE", "home");
 
 /*	----------------

@@ -15,11 +15,12 @@ $birth_year  = null;
 // Cas où l'utilisateur envoie le formulaire (méthode POST)
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo "Le formulaire est envoyé.";
+    var_dump($_SESSION['token']);
+    var_dump($_POST['token']);
 }
 
 // Cas où l'utilisateur arrive sur la page sans envoyer le formulaire (méthode GET)
 else {
-    var_dump(uniqid());
     // Définition du token
     $_SESSION['token'] = getToken();
 }
