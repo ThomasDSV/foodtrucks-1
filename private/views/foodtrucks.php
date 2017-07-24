@@ -1,1 +1,1 @@
-Page des foodtrucks
+<h1>Liste des foodtrucks</h1>

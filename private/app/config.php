@@ -1,38 +1,36 @@
 <?php
 
-// --------------------
-// PARAMETRES DE CONNECTION BDD
-// --------------------
+/*	----------------------------
+	PARAMETRES CONNEXION BDD
+----------------------------  */
 
-// Adresse du serveur de base de données
-// "localhost" est un alias de 127.0.0.1
+// Adresse du serveur BdD
 $host = "127.0.0.1";
 
-// Nom d'utilisateur de la base de données
+// Nom d'utilisateur de la BdD
 $user = "root";
 
-// Mot de passe associé à l'utilisateur (root) de la base de données
+// Mot de passe associé à l'utilisateur
 $pass = "";
 
-// Nom de la base de données sur laquelle on va travailler
+// Nom de la BdD sur laquelle on va travailler
 $database = "foodtrucks";
 
 
+/*	--------------
+	CONSTANTES
+--------------  */
 
-// --------------------
-// CONSTANTES
-// --------------------
-
-// -- Execution mode
+// Execution mode
 define("MODE", "dev"); // dev | prod
 
-// -- Directories
+// Répertoires "views"
 define("VIEWS_DIRECTORY", "../private/views/");
 
+define("DEFAULT_PAGE", "home");
 
+/*	----------------
+	DEFAULT VARS
+----------------  */
 
-// --------------------
-// DEFAULT VARS
-// --------------------
-
-$default_page = "home";
+// $default_page = "home";

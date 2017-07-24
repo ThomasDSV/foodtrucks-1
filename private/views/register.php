@@ -1,6 +1,6 @@
 <?php
 
-// Definition des variables par défaut
+// Définition des variables par défaut
 $login       = null;
 $password    = null;
 $firstname   = null;
@@ -10,17 +10,23 @@ $birth_day   = null;
 $birth_month = null;
 $birth_year  = null;
 
-// Cas où l'utilisateur envoie le formulaire (méthode POST)
-// Contrôle du formulaire
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// CONTRÔLE DU FORMULAIRE
 
+// Cas où l'utilisateur envoie le formulaire (méthode POST)
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    echo "Le formulaire est envoyé.";
 }
 
 // Cas où l'utilisateur arrive sur la page sans envoyer le formulaire (méthode GET)
 else {
-
+    var_dump(uniqid());
+    // Définition du token
+    $_SESSION['token'] = getToken();
 }
+
 ?>
+
+<!-- FORMULAIRE HTML -->
 
 <div class="page-header">
     <h2>Inscription</h2>
@@ -33,7 +39,7 @@ else {
 
         <form method="post">
 
-            <input type="text" name="token" value="<?php echo $_SESSION['token']; ?>">
+            <input type="hidden" name="token" value="<?php echo $_SESSION['token']; ?>">
 
             <div class="form-group">
                 <label for="login">Identifiant (adresse email)</label>
@@ -102,17 +108,15 @@ else {
                     <input type="checkbox" name="acceptTerms">
                     J'accepte les conditions d'utilisation du service.
                 </label>
-
             </div>
 
-            <br>
+            <br/>
             <button type="submit" class="btn btn-info btn-block">Valider</button>
         </form>
 
         <p class="text-center">
-            <a href="index.php?page=login">J'ai déjà compte</a>
+            <a href="index.php?page=login">J'ai déjà un compte</a>
         </p>
-
 
     </div>
 </div>

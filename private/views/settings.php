@@ -1,1 +1,1 @@
-page settings
+<h1>Paramètres de votre compte</h1>

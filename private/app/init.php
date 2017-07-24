@@ -1,13 +1,27 @@
 <?php
-include_once '../private/app/config.php';
-include_once '../private/app/routes.php';
 
-include_once '../private/functions/flashbag.php';
+include_once('../private/app/config.php');
+include_once('../private/app/routes.php');
+include_once('../private/app/autoload.php');
+// include_once('../private/functions/flashbag.php');
+// include_once('../private/functions/token.php');
 
 
-// --------------------
-// CONFIG PHP
-// --------------------
+/*  --------------
+    AUTOLOADER
+--------------  */
+
+// Autoload functions / controllers
+autoload(FUNCTIONS_DIRECTORY, FUNCTIONS_FILES);
+
+// Autoload models
+autoload(MODELS_DIRECTORY, MODELS_FILES);
+
+
+/*  --------------
+    CONFIG PHP
+--------------  */
+
 if (MODE === "dev") {
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
@@ -19,46 +33,43 @@ if (MODE === "dev") {
 }
 
 
+/*  -----------------------------
+    INITIALISATION DE SESSION
+-----------------------------  */
 
-// --------------------
-// INITIALISATION DE SESSION
-// --------------------
 session_start();
 
 
-// --------------------
-// CONNEXION BDD
-// --------------------
+/*  -----------------
+    CONNEXION BDD
+-----------------  */
 
 // On teste la connexion à la BDD
 try {
-    // Création de la connexion à la base de données
     $pdo = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $user, $pass);
+
     if (MODE === "dev") {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 }
-// Si la connexion échoue, on attrape l'exception (message d'erreur)
-// et on arrete l'execution du programme
+// Si la connexion échoue, on attrape l'exception (message d'erreur) et on arrete l'execution du programme
 catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
 
 
-// --------------------
-// ROUTING (get page)
-// --------------------
+/*  ----------------------
+    ROUTING (get page)
+----------------------  */
 
 // Recupération de la page que l'utilisateur souhaite afficher
 if (isset($_GET['page'])) {
     $page = $_GET['page'];
 }
-// Si l'utilisateur arrive sur le site SANS DEFINIR le parametre
-// page dans l'url, la variable $page prendra la valeur de $default_page
+// Si l'utilisateur arrive sur le site sans définir le paramètre page dans l'URL, la variable $page prendra la valeur de $default_page
 else {
-    $page = $default_page;
+    $page = DEFAULT_PAGE;
 }
-
 
 // On teste l'existence de la page demandée dans le $router
 if (!array_key_exists($page, $router)) {
@@ -66,10 +77,9 @@ if (!array_key_exists($page, $router)) {
 }
 
 
-
-// --------------------
-// SECURITY
-// --------------------
+/*  ------------
+    SECURITY
+------------  */
 
 if (
     (isset($router[$page][1]) && $router[$page][1] === true)
