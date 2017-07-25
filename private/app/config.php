@@ -29,7 +29,7 @@ define("VIEWS_DIRECTORY", "../private/views/");
 define("FUNCTIONS_DIRECTORY", "../private/functions/");
 define("MODELS_DIRECTORY", "../private/models/");
 
-// -- Regular Expressions
+// Regular Expressions
 // Filter for controllers/autoload instruction
 define("FUNCTIONS_FILES", "/^fnc-.*\.php$/i");
 
@@ -39,8 +39,16 @@ define("MODELS_FILES", "/^mdl-.*\.php$/i");
 // Page par défaut (paramètre "page" non défini/rempli dans l'URL)
 define("DEFAULT_PAGE", "home");
 
+// Users roles
+define("ROLES_GLUE", ",");
+
+define("ROLE_USER", "USER");
+define("ROLE_ADMIN", "ADMIN");
+
 /*	----------------
 	DEFAULT VARS
 ----------------  */
 
 // $default_page = "home";
+$default_lang = "fr";
+$default_users_roles = [ROLE_USER];
